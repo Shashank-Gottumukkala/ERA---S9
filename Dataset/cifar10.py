@@ -26,9 +26,11 @@ class CIFAR10(Dataset):
                 self.alb_transforms = [
                 A.HorizontalFlip(p = 0.5),
                 A.ShiftScaleRotate(shift_limit=0.0625, scale_limit=0.1, rotate_limit=15),
-                A.CoarseDropout(max_holes= 1, max_height=16, max_width=16, p=0.2, fill_value=0)
+                A.CoarseDropout(max_holes= 1, max_height=16, max_width=16, p=0.2, fill_value=0),
+                
                 # A.Downscale(0.8, 0.95, p =0.2),
                 # A.ToGray(p = 0.5),
+                
             ]
             return super(CIFAR10, self).get_train_transforms()
         
@@ -44,7 +46,7 @@ class CIFAR10(Dataset):
         def get_test_loader(self):
             super(CIFAR10, self).get_test_loader()
 
-            test_data = AlbData('../data', train=False, download=True, alb_transform=self.test_transforms)
+            test_data = AlbData('../data', train=False, download=True, alb_transforms=self.test_transforms)
             self.test_loader = torch.utils.data.DataLoader(test_data, shuffle=False, **self.loader_kwargs)
             return self.test_loader     
 
