@@ -27,8 +27,12 @@ The code repository has the following file structure:
 
 ### 3. Layer Normaliztion
    - No of Params: `197,418`
-   - Best Training Accuracy : `66.94`
-   - Best Test Accuracy : `68.55`
+   - Best Training Accuracy : `80.6`
+   - Best Test Accuracy : `~84`
+
+   - ![image](https://github.com/Shashank-Gottumukkala/ERA-S9-Albumentations/assets/59787210/154e29f5-af47-48b7-b842-ba344d8e5820)
+   - ![image](https://github.com/Shashank-Gottumukkala/ERA-S9-Albumentations/assets/59787210/0cd40b5b-0026-4f23-88b7-0d99836ffc06)
+
   
   
 
