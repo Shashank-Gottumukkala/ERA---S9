@@ -25,7 +25,7 @@ The code repository has the following file structure:
 -  `utis.py` :
      - This code contains classes `Train`, `Test`, `Experiment` that are designed to facilitate training, testing, and conducting experiments with a given model and dataset.
 
-### 3. Layer Normaliztion
+### 3. Model Performance
    - No of Params: `197,418`
    - Best Training Accuracy : `80.6`
    - Best Test Accuracy : `~84`
