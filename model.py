@@ -1,15 +1,11 @@
-import torch.nn as nn
-import torchinfo
-    
+import torch.nn as nn    
 
 class ConvLayer(nn.Module):
     def __init__(self, input_channels, output_channels, bias=False, padding=0, dws=False, skip=False, dilation=1, dropout=0):
         super(ConvLayer, self).__init__()
 
-        # Member Variables
         self.skip = skip
 
-        # If Depthwise Separable is True
         if dws and input_channels == output_channels:
             self.convlayer = nn.Sequential(
                 nn.Conv2d(input_channels, output_channels, 3, bias=bias, padding=padding, groups=input_channels, dilation=dilation,
@@ -100,10 +96,5 @@ class Model(nn.Module):
         return x
 
     
-    def summary(self, input_size=None):
-        return torchinfo.summary(self, input_size=input_size, depth=5,
-                                 col_names=["input_size", "output_size", "num_params", "params_percent"])
-                    
-
 
                                         

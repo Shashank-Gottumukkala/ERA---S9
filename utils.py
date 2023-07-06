@@ -5,7 +5,9 @@ from tqdm import tqdm
 from matplotlib import pyplot as plt
 from collections import defaultdict
 
-from get_device import get_device
+
+use_cuda = torch.cuda.is_available()
+device = torch.device("cuda" if use_cuda else "cpu")
 
 
 def get_correct_count(prediction, labels):
@@ -21,7 +23,7 @@ def get_incorrect_preds(prediction, labels):
 class Train(object):
     def __init__(self, model, dataset, criterion, optimizer, l1=0):
         self.model = model
-        self.device = get_device()
+        self.device = device
         self.criterion = criterion
         self.dataset = dataset
         self.optimizer = optimizer
@@ -75,7 +77,7 @@ class Train(object):
 class Test(object):
     def __init__(self, model, dataset, criterion):
         self.model = model
-        self.device = get_device()
+        self.device = device
         self.criterion = criterion
         self.dataset = dataset
 
@@ -123,7 +125,7 @@ class Test(object):
 
 class Experiment(object):
     def __init__(self, model, dataset, lr=0.01, criterion=F.nll_loss):
-        self.model = model.to(get_device())
+        self.model = model.to(device)
         self.dataset = dataset
         self.optimizer = optim.SGD(self.model.parameters(), lr=lr, momentum=0.9)
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, patience=0, verbose=True, factor=0.3)
